@@ -4,15 +4,15 @@
 ## Project structure
 ```
 jar-websiste /
-├── index.html        # Page d'accueil
+├── index.html        
 ├── pages/
-│   ├── news.html     # Page des actualités
-│   ├── images.html   # Page des images
-│   └── contact.html  # Page de contact
+│   ├── news.html     
+│   ├── images.html   
+│   └── contact.html  
 ├── css/
-│   └── styles.css    # Fichier CSS
+│   └── styles.css    
 ├── js/
-│   └── script.js     # Fichier JavaScript
-└── img/             # Dossier pour les images
+│   └── script.js     
+└── img/             
 ```
 
