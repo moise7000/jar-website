@@ -8,6 +8,23 @@
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
+
+<div id="languageModal" class="modal">
+    <div class="modal-content">
+        <h2 data-translate="chooseLang">Choisissez votre langue</h2>
+        <div class="language-buttons">
+            <button onclick="setLanguage('fr')" class="lang-btn">
+
+                Français
+            </button>
+            <button onclick="setLanguage('en')" class="lang-btn">
+
+                English
+            </button>
+        </div>
+    </div>
+</div>
+
 <nav class="navbar">
     <a href="../index.html" class="brand">JAR</a>
     <button class="hamburger" onclick="toggleMenu()">
@@ -25,9 +42,7 @@
 
 </main>
 
-<div>
-    <p>hellowordl</p>
-</div>
+
 
 <script src="../js/script.js"></script>
 </body>
