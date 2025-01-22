@@ -7,6 +7,14 @@
 const translations = {
     fr: {
         welcome: "Bienvenue sur JAR",
+        welcomeDescription: "JAR, un collectif de jeunes artistes orléanais.es, motivé.es par la volonté de " +
+            "contribuer à la dynamisation de la scène artistique locale.\n" +
+            "Nous avons fondé JAR pour offrir un espace de de rencontre, participatif," +
+            " d’échange, de pratique et de découverte artistique à toutes et à tous.\n" +
+            "\n" +
+            "Nous souhaitons créer un environnement participatif où chacun peut s'initier" +
+            " à l'art et rencontrer des artistes passionnés.\n",
+
         news: "Actualités",
         images: "Images",
         contact: "Contact",
@@ -14,6 +22,14 @@ const translations = {
     },
     en: {
         welcome: "Welcome to JAR",
+        welcomeDescription: "JAR, a collective of young artists from Orléans, driven by the desire " +
+            "to invigorate the local art scene.\n" +
+            "We founded JAR to provide a space for meeting, participation, exchange, artistic practice, " +
+            "and discovery for everyone.\n" +
+            "\n" +
+            "We aim to create a participatory environment where anyone can explore art and " +
+            "connect with passionate artists.",
+
         news: "News",
         images: "Images",
         contact: "Contact",
@@ -78,6 +94,14 @@ function hideLanguageModal() {
  * @param {string} lang - Code de la langue choisie (par exemple, 'fr' ou 'en').
  */
 function setLanguage(lang) {
+    currentLanguage = lang;
+    document.getElementById('currentLang').textContent = lang.toUpperCase();
+    // Mettez à jour l'affichage des news avec la nouvelle langue
+    if (newsData) {
+        displayNews();
+    }
+
+
     localStorage.setItem('language', lang);
     applyTranslations(lang);
     updateLanguageDisplay(lang);
@@ -140,3 +164,86 @@ function applyTranslations(lang) {
  * @description Initialise la langue au chargement de la page en appelant `initializeLanguage`.
  */
 document.addEventListener('DOMContentLoaded', initializeLanguage);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let newsData = null;
+let currentLanguage = 'fr';
+
+async function loadNews() {
+    try {
+        const response = await fetch('../ressources/news.json');
+        newsData = await response.json();
+        displayNews();
+    } catch (error) {
+        console.error('Erreur lors du chargement des news:', error);
+    }
+}
+
+function displayNews() {
+    const newsContainer = document.createElement('div');
+    newsContainer.className = 'news-container';
+
+    newsData.news.forEach(item => {
+        const newsCard = createNewsCard(item);
+        newsContainer.appendChild(newsCard);
+    });
+
+    const mainContent = document.querySelector('main.content');
+    // Supprime l'ancien contenu des news s'il existe
+    const existingNews = document.querySelector('.news-container');
+    if (existingNews) {
+        existingNews.remove();
+    }
+    mainContent.appendChild(newsContainer);
+}
+
+function createNewsCard(newsItem) {
+    const card = document.createElement('div');
+    card.className = 'news-card';
+
+    const image = document.createElement('img');
+    image.src = newsItem.image;
+    image.alt = newsItem.title[currentLanguage];
+    image.className = 'news-image';
+
+    const title = document.createElement('h2');
+    title.textContent = newsItem.title[currentLanguage];
+    title.className = 'news-title';
+
+    const description = document.createElement('p');
+    description.textContent = newsItem.description[currentLanguage];
+    description.className = 'news-description';
+
+    card.appendChild(image);
+    card.appendChild(title);
+    card.appendChild(description);
+
+    return card;
+}
+
+
+
+// Ajoutez cet appel à la fin de votre script.js
+
+document.addEventListener('DOMContentLoaded', () => {
+    // On vérifie si nous sommes sur la page news.html
+    const isNewsPage = window.location.pathname.includes('news.html');
+
+    if (isNewsPage) {
+        loadNews();
+    }
+});

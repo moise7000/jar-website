@@ -183,3 +183,113 @@ body {
         flex-direction: column;
     }
 }
+
+
+
+/* Ajoutez ces styles à votre fichier CSS */
+.news-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.news-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+}
+
+.news-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.news-title {
+    padding: 1rem;
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.news-description {
+    padding: 0 1rem 1rem;
+    margin: 0;
+    color: #666;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .news-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/*----------------------------------------- HOME CONTAINER -----------------------------------------------------------*/
+
+
+.home-container {
+    display: flex;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    align-items: center;
+}
+
+.home-image {
+    flex: 1;
+}
+
+.home-image img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.home-text {
+    flex: 1;
+    padding: 1rem;
+}
+
+.home-text h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.home-text p {
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .home-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .home-image, .home-text {
+        width: 100%;
+    }
+}
