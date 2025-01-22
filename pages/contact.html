@@ -31,9 +31,13 @@
         <i class="fa fa-bars"></i>
     </button>
     <div class="nav-links" id="navLinks">
-        <a href="news.html" class="nav-link active">News</a>
-        <a href="images.html" class="nav-link">Images</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="news.html" class="nav-link" data-translate="news">Actualités</a>
+        <a href="images.html" class="nav-link" data-translate="images">Images</a>
+        <a href="contact.html" class="nav-link" data-translate="contact">Contact</a>
+        <button onclick="showLanguageModal()" class="lang-switch">
+            <i class="fa fa-globe"></i>
+            <span id="currentLang">FR</span>
+        </button>
     </div>
 </nav>
 
