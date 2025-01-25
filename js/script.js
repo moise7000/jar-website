@@ -254,7 +254,7 @@ function formatDate(newsItem, lang) {
 
 
 let newsData = null;
-let currentLanguage = 'fr';
+let currentLanguage = localStorage.getItem('language') || 'fr';
 
 async function loadNews() {
     try {
@@ -318,5 +318,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (isNewsPage) {
         loadNews();
+        applyTranslations(currentLanguage);
     }
 });

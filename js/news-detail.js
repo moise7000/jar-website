@@ -1,5 +1,8 @@
 // news-detail.js
 async function loadNewsDetail() {
+    // Retrieve the stored language or default to 'fr'
+    currentLanguage = localStorage.getItem('language') || 'fr';
+
     const urlParams = new URLSearchParams(window.location.search);
     const newsId = urlParams.get('id');
 
@@ -15,15 +18,17 @@ async function loadNewsDetail() {
             const contentWrapper = document.createElement('div');
             contentWrapper.className = 'news-detail-content';
 
-            // Title first
+            // Title with translation attribute
             const title = document.createElement('h1');
             title.textContent = newsItem.title[currentLanguage];
+            title.setAttribute('data-translate', 'newsTitle' + newsItem.id);
             title.className = 'news-detail-title';
 
-            // Date as subtitle
+            // Date as subtitle with translation attribute
             const date = document.createElement('div');
             date.className = 'news-detail-subtitle';
             date.textContent = formatDate(newsItem, currentLanguage);
+            date.setAttribute('data-translate', 'newsDate' + newsItem.id);
 
             const bottomWrapper = document.createElement('div');
             bottomWrapper.className = 'news-detail-bottom-wrapper';
@@ -42,6 +47,7 @@ async function loadNewsDetail() {
 
             const description = document.createElement('p');
             description.textContent = newsItem.description[currentLanguage];
+            description.setAttribute('data-translate', 'newsDescription' + newsItem.id);
             description.className = 'news-detail-description';
 
             textContainer.appendChild(description);
@@ -53,11 +59,46 @@ async function loadNewsDetail() {
             detailContainer.appendChild(title);
             detailContainer.appendChild(date);
             detailContainer.appendChild(bottomWrapper);
+
+            // Update translations object to include these new keys
+            translations.fr['newsTitle' + newsItem.id] = newsItem.title.fr;
+            translations.en['newsTitle' + newsItem.id] = newsItem.title.en;
+            translations.fr['newsDescription' + newsItem.id] = newsItem.description.fr;
+            translations.en['newsDescription' + newsItem.id] = newsItem.description.en;
+
+            // Ensure currentLanguage is set before applying translations
+            currentLanguage = localStorage.getItem('language') || 'fr';
+
+            // Apply translations to ensure dynamic content is translated
+            applyTranslations(currentLanguage);
+
+            // Update language display
+            updateLanguageDisplay(currentLanguage);
         } else {
             console.error('News item not found');
         }
     } catch (error) {
         console.error('Error loading news detail:', error);
+    }
+}
+
+function setLanguage(lang) {
+    currentLanguage = lang;
+    document.getElementById('currentLang').textContent = lang.toUpperCase();
+
+    localStorage.setItem('language', lang);
+    applyTranslations(lang);
+    updateLanguageDisplay(lang);
+    hideLanguageModal();
+
+    // Reload news if on news pages to update with new language
+    const isNewsPage = window.location.pathname.includes('news.html');
+    const isNewsDetailPage = window.location.pathname.includes('news-detail.html');
+
+    if (isNewsPage) {
+        loadNews();
+    } else if (isNewsDetailPage) {
+        loadNewsDetail();
     }
 }
 
