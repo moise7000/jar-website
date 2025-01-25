@@ -11,7 +11,9 @@
 
         "en": "This second exhibition, open to everyone, provided an opportunity for each artist to showcase their work around a common theme: Intrusion. This theme took on its full meaning through the choice of exhibition spaces within private homes."
       },
-      "image": "../ressources/img/intrusion2.JPG"
+      "image": "../ressources/img/intrusion2.JPG",
+      "startDate": "2024-12-13",
+      "endDate": "2024-12-14"
     },
 
     {
@@ -24,7 +26,9 @@
         "fr": "Cette exposition, ouverte à toutes et à tous, était l’occasion pour chaque artiste de pouvoir présenter leurs travaux autour d'une thématique commune : celle de l'Intrusion. \nCette thématique, prenant tout son sens de part ses lieux d'exposition chez l’habitant.\n",
         "en": "This exhibition, open to everyone, provided an opportunity for each artist to present their work around a common theme: Intrusion.  \nThis theme took on its full meaning through the choice of exhibition spaces within private homes."
       },
-      "image": "../ressources/img/logo.jpeg"
+      "image": "../ressources/img/logo.jpeg",
+      "startDate": "2024-10-06"
+
     },
     {
       "id": 1,
@@ -37,7 +41,10 @@
 
         "en": "Nous avons eu l'opportunité de nous établir temporairement au sein de l'atelier Jacques Robak, situé au 13 rue de la Tour Neuve. Ce lieu emblématique, empreint d'une âme artistique et d'une riche histoire, a été marqué par la présence de ce dernier, un graveur reconnu pour son ouverture et son amour de l'échange artistique. \n\nNotre première exposition a donc eu lieu du 15 au 25 août 2024. Cet événement était l'occasion de partager l'art sous toutes ses formes.\n"
       },
-      "image": "../ressources/img/testnews.png"
+      "image": "../ressources/img/testnews.png",
+      "startDate": "2024-08-15",
+      "endDate": "2024-08-25"
+
     }
   ]
 }

@@ -175,7 +175,80 @@ document.addEventListener('DOMContentLoaded', initializeLanguage);
 
 
 
+// Update in script.js
+function createNewsCard(newsItem) {
+    const card = document.createElement('div');
+    card.className = 'news-card';
 
+    // Add data attribute for news ID
+    card.setAttribute('data-news-id', newsItem.id);
+
+    // Make card clickable
+    card.addEventListener('click', () => {
+        window.location.href = `news-detail.html?id=${newsItem.id}`;
+    });
+    card.style.cursor = 'pointer'; // Add pointer cursor to indicate clickability
+
+    const image = document.createElement('img');
+    image.src = newsItem.image;
+    image.alt = newsItem.title[currentLanguage];
+    image.className = 'news-image';
+
+    const title = document.createElement('h2');
+    title.textContent = newsItem.title[currentLanguage];
+    title.className = 'news-title';
+
+    const description = document.createElement('p');
+    description.textContent = newsItem.description[currentLanguage];
+    description.className = 'news-description';
+
+    // Add date to the card
+    const date = document.createElement('div');
+    date.className = 'news-date';
+    date.textContent = formatDate(newsItem, currentLanguage);
+
+    card.appendChild(image);
+    card.appendChild(title);
+    card.appendChild(description);
+    card.appendChild(date);
+
+    return card;
+}
+
+// Date formatting function
+function formatDate(newsItem, lang) {
+    if (newsItem.startDate) {
+        const start = new Date(newsItem.startDate);
+        const end = newsItem.endDate ? new Date(newsItem.endDate) : null;
+
+        const options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
+
+        if (!end) {
+            return start.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', options);
+        }
+
+        // Check if dates are in same month and year
+        if (start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear()) {
+            const startFormat = start.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric' });
+            const endFormat = end.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            return lang === 'fr'
+                ? `Du ${startFormat} au ${endFormat}`
+                : `From ${startFormat} to ${endFormat}`;
+        }
+
+        // Different months or years
+        const startFormat = start.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', options);
+        const endFormat = end.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', options);
+        return lang === 'fr'
+            ? `Du ${startFormat} au ${endFormat}`
+            : `From ${startFormat} to ${endFormat}`;
+    }
+    return '';
+}
 
 
 
@@ -211,29 +284,29 @@ function displayNews() {
     mainContent.appendChild(newsContainer);
 }
 
-function createNewsCard(newsItem) {
-    const card = document.createElement('div');
-    card.className = 'news-card';
-
-    const image = document.createElement('img');
-    image.src = newsItem.image;
-    image.alt = newsItem.title[currentLanguage];
-    image.className = 'news-image';
-
-    const title = document.createElement('h2');
-    title.textContent = newsItem.title[currentLanguage];
-    title.className = 'news-title';
-
-    const description = document.createElement('p');
-    description.textContent = newsItem.description[currentLanguage];
-    description.className = 'news-description';
-
-    card.appendChild(image);
-    card.appendChild(title);
-    card.appendChild(description);
-
-    return card;
-}
+// function createNewsCard(newsItem) {
+//     const card = document.createElement('div');
+//     card.className = 'news-card';
+//
+//     const image = document.createElement('img');
+//     image.src = newsItem.image;
+//     image.alt = newsItem.title[currentLanguage];
+//     image.className = 'news-image';
+//
+//     const title = document.createElement('h2');
+//     title.textContent = newsItem.title[currentLanguage];
+//     title.className = 'news-title';
+//
+//     const description = document.createElement('p');
+//     description.textContent = newsItem.description[currentLanguage];
+//     description.className = 'news-description';
+//
+//     card.appendChild(image);
+//     card.appendChild(title);
+//     card.appendChild(description);
+//
+//     return card;
+// }
 
 
 

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JAR - News Detail</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<div id="languageModal" class="modal">
+  <div class="modal-content">
+    <h2 data-translate="chooseLang">Choisissez votre langue</h2>
+    <div class="language-buttons">
+      <button onclick="setLanguage('fr')" class="lang-btn">Français</button>
+      <button onclick="setLanguage('en')" class="lang-btn">English</button>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar">
+  <a href="../index.html" class="brand">JAR</a>
+  <button class="hamburger" onclick="toggleMenu()">
+    <i class="fa fa-bars"></i>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="../pages/news.html" class="nav-link" data-translate="news">Actualités</a>
+    <a href="../pages/images.html" class="nav-link" data-translate="images">Images</a>
+    <a href="../pages/contact.html" class="nav-link" data-translate="contact">Contact</a>
+    <button onclick="showLanguageModal()" class="lang-switch">
+      <i class="fa fa-globe"></i>
+      <span id="currentLang">FR</span>
+    </button>
+  </div>
+</nav>
+
+<main class="content">
+  <div id="newsDetail" class="news-detail">
+    <!-- News details will be dynamically populated here -->
+  </div>
+</main>
+
+<script src="../js/script.js"></script>
+<script src="../js/news-detail.js"></script>
+</body>
+</html>
