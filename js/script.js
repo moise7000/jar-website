@@ -173,7 +173,12 @@ document.addEventListener('DOMContentLoaded', initializeLanguage);
 
 
 
-
+function truncateString(str, maxLength) {
+    if (str.length > maxLength) {
+        return str.slice(0, maxLength) + " ...";
+    }
+    return str;
+}
 
 // Update in script.js
 function createNewsCard(newsItem) {
@@ -201,6 +206,7 @@ function createNewsCard(newsItem) {
     const description = document.createElement('p');
     description.textContent = newsItem.description[currentLanguage];
     description.className = 'news-description';
+    description.textContent = truncateString(description.textContent, 200)
 
     // Add date to the card
     const date = document.createElement('div');
